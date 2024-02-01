@@ -1,25 +1,36 @@
 package testCases;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import pages.Dashboard;
 import pages.Homepage;
 import pages.Loginpage;
-import pages.Dashboard;
 
 public class Login_TC1 {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 
 		WebDriver driver;
-		WebDriverManager.chromedriver().setup();
+	
 		driver = new ChromeDriver();
 
 		driver.manage().window().maximize();
 
-		driver.get("https://demoqa.com/login");
-
+		Properties prop;
+		String proLoc = "C:\\Users\\santh\\git\\repository7\\PraticeMaven\\config.properties";
+		
+		BufferedReader reader = new BufferedReader(new FileReader(proLoc));
+		prop = new Properties();
+		prop.load(reader);
+		
+		driver.get(prop.getProperty("searchKey"));
+		
 		//Creating object of home page
 		Homepage home = new Homepage(driver);
 
@@ -33,8 +44,8 @@ public class Login_TC1 {
 		home.clickLogin();
 
 		//Enter username & password
-		login.enterUsername("santhoshg");
-		login.enterPassword("Vishu@23");
+		login.enterUsername(prop.getProperty("username"));
+		login.enterPassword(prop.getProperty("password"));
 
 		//Click on login button
 		login.clickLogin();
