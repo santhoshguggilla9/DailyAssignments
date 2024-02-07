@@ -9,7 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ReadXlFileExample {
+public class ReadXlFileForLoop {
 
 	public static void main(String[] args) throws IOException {
 		
@@ -25,16 +25,23 @@ public class ReadXlFileExample {
         //Creating a Sheet object using the sheet Name
         XSSFSheet sheet = wb.getSheet("Sheet1");
         
-        //Create a row object to retrieve row at index 1
-        XSSFRow row2=sheet.getRow(1);
-        
-        //Create a cell object to retreive cell at index 5
-        XSSFCell cell=row2.getCell(1);
-        
-      //Get the address in a variable
-        String value= cell.getStringCellValue();
-        
-        System.out.println("values located in a1 = " +value);
+      //get all rows in the sheet
+        int rowCount=sheet.getLastRowNum() - sheet.getFirstRowNum();
+         
+        //iterate over all the row to print the data present in each cell.
+        for(int i=1;i<=rowCount;i++){
+            
+            //get cell count in a row
+            int cellcount=sheet.getRow(i).getLastCellNum();
+            
+            //iterate over each cell to print its value
+            System.out.println("Row"+ i+" data is :");
+            
+            for(int j=0;j<cellcount;j++){
+                System.out.print(sheet.getRow(i).getCell(j).getStringCellValue() +",");
+            }
+            System.out.println();
+        }
 	}
 
 }

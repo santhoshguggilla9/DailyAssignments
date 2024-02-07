@@ -17,7 +17,7 @@ public class TableExample {
 
 		String value = driver.findElement(By.xpath("//*[@id=\"content\"]/table[1]/tbody/tr[3]/td[1]")).getText();
 		
-		System.out.println("the value: " +value);
+		System.out.println("the value: " + value);
 	}
 
 }
