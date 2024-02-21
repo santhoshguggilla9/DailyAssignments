@@ -29,7 +29,7 @@ public class ReadXlFileForLoop {
         int rowCount=sheet.getLastRowNum() - sheet.getFirstRowNum();
          
         //iterate over all the row to print the data present in each cell.
-        for(int i=1;i<=rowCount;i++){
+        for(int i=0;i<=rowCount;i++){
             
             //get cell count in a row
             int cellcount=sheet.getRow(i).getLastCellNum();

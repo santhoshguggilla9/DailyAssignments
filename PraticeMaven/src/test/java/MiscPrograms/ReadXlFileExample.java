@@ -14,27 +14,28 @@ public class ReadXlFileExample {
 	public static void main(String[] args) throws IOException {
 		
 		 //Create an object of File class to open xlsx file
-        File file = new File("C:\\Users\\santh\\Downloads\\file1.xlsx");
+        File file = new File("C:\\Users\\santh\\Downloads\\file1.xls");
         
-        //Create an object of FileInputStream class to read excel file
         FileInputStream inputStream = new FileInputStream(file);
-
-      //Creating workbook instance that refers to .xls file
+        
+        //creating instance for excel workbook
         XSSFWorkbook wb = new XSSFWorkbook(inputStream);
         
-        //Creating a Sheet object using the sheet Name
+        //getting the sheet1 data
         XSSFSheet sheet = wb.getSheet("Sheet1");
         
-        //Create a row object to retrieve row at index 1
-        XSSFRow row2=sheet.getRow(1);
+        //getting the first row data
+        XSSFRow row = sheet.getRow(1);
         
-        //Create a cell object to retreive cell at index 5
-        XSSFCell cell=row2.getCell(1);
+        XSSFCell cell = row.getCell(1);
         
-      //Get the address in a variable
-        String value= cell.getStringCellValue();
+        String value = cell.getStringCellValue();
         
-        System.out.println("values located in a1 = " +value);
+        System.out.println("the value is: " +value);
+     
+        
+        
+      
 	}
 
 }

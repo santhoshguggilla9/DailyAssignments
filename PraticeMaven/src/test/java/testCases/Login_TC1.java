@@ -13,53 +13,45 @@ import pages.Homepage;
 import pages.Loginpage;
 
 public class Login_TC1 {
-
+	
+	static WebDriver driver;
+	
 	public static void main(String[] args) throws InterruptedException, IOException {
 
-		WebDriver driver;
-	
-		driver = new ChromeDriver();
-
-		driver.manage().window().maximize();
-
-		Properties prop;
-		String proLoc = "C:\\Users\\santh\\git\\repository7\\PraticeMaven\\config.properties";
 		
-		BufferedReader reader = new BufferedReader(new FileReader(proLoc));
-		prop = new Properties();
+		Properties prop=new Properties();
+		if(prop.getProperty("browser").equals("chrome"))
+		{
+			driver = new ChromeDriver();
+			driver.manage().window().maximize();
+		}
+			
+		String propLoc = "C:\\Users\\santh\\git\\repository7\\PraticeMaven\\config.properties";
+		
+		BufferedReader reader = new BufferedReader(new FileReader(propLoc));
+		
 		prop.load(reader);
 		
 		driver.get(prop.getProperty("searchKey"));
 		
-		//Creating object of home page
 		Homepage home = new Homepage(driver);
-
-		//Creating object of Login page
+		
 		Loginpage login = new Loginpage(driver);
-
-		//Creating object of Dashboard
+		
 		Dashboard dashboard = new Dashboard(driver);
-
-		//Click on Login button
+		
 		home.clickLogin();
-
-		//Enter username & password
+		
 		login.enterUsername(prop.getProperty("username"));
 		login.enterPassword(prop.getProperty("password"));
-
-		//Click on login button
+		
 		login.clickLogin();
 		Thread.sleep(3000);
-
-
-		//Capture the page heading and print on console
-		System.out.println("The page heading is --- " +dashboard.getHeading());
-
-		//Click on Logout button
 		dashboard.clickLogout();
-
-		//Close browser instance
-		//driver.quit();
+		
+		System.out.println("Test passed!!");
+		driver.quit();
+		
 	}
 
 

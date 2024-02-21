@@ -24,7 +24,7 @@ class readValExcel
 		driver.get("https://www.google.com");
 		
 		WebElement s = driver.findElement(By.name("q"));
-		s.sendKeys(key+Keys.ENTER);
+		s.sendKeys(key + Keys.ENTER);
 	}
 	public void teardown()
 	{

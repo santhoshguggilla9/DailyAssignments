@@ -19,11 +19,10 @@ public class RelativeLocators {
 
 		driver.get("https://www.browserstack.com/");
 
-		WebElement appLive = driver.findElement(By.className("product-section__content-cards"));
-		WebElement getADemo = driver.findElement(RelativeLocator.with(By.tagName("button")).above(appLive));
-		getADemo.click();
-
-		driver.quit();
+		WebElement applive = driver.findElement(By.className("product-section__content-cards"));
+		
+		WebElement live = driver.findElement(RelativeLocator.with(By.className("with-card-layout__link")).below(applive));
+		live.click();
 	}
 
 }

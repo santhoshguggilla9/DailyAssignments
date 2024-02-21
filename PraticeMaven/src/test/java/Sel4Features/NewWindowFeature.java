@@ -1,5 +1,6 @@
 package Sel4Features;
 
+import java.awt.Window;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -16,15 +17,13 @@ public class NewWindowFeature {
 
 		WebDriver driver;
 		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		driver.manage().window().maximize();
-
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3000));
+		
 		driver.get("https://www.google.com");
-		System.out.println("title:" + driver.getTitle());
-
-		WebDriver newDriver = driver.switchTo().newWindow(WindowType.TAB);
-		newDriver.get("https://www.flipkart.com/viewcart");
-
-		driver.quit();
+		driver.switchTo().newWindow(WindowType.TAB);
+		driver.get("https://www.gmail.com");
+		
+		
+		
 	}	
 }
